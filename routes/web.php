@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\ProductosController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,13 @@ use App\Http\Controllers\ProductosController;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('producto/{producto_id}', [ProductosController::class, 'show'])->name('producto');
+Route::post('/', [HomeController::class, 'home'])->name('home.search');
+
+Route::resource('productos', ProductosController::class)
+    ->only(['index', 'show', 'create', 'store']);
+
+Route::resource('categorias', CategoriasController::class)
+    ->only(['index', 'show', 'create', 'store']);
 
 Route::view('/login', 'login')->name('login');
 Route::view('/signup', 'signup')->name('signup');

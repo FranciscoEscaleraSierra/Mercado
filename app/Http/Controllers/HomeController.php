@@ -8,12 +8,23 @@ use App\Models\Producto;
 
 class HomeController extends Controller
 {
-    public function home()
+    public function home(Request $request)
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::when($request->nombre, function ($categoria) use ($request) {
+            return $categoria->where('nombre', 'like', '%'.$request->nombre.'%')
+                ->orWhereHas('productos', function ($productos) use ($request) {
+                    $productos->where('nombre', 'like', '%'.$request->nombre.'%');
+                });
+        })
+        ->get();
 
-        $productos = Producto::when(request('categoria_id'), function($query) {
-          $query->where('categoria_id', request('categoria_id'));
+        $productos = Producto::when($request->categoria_id, function($producto) {
+          $producto->whereHas('categorias', function ($categoria) {
+            $categoria->where('id', request('categoria_id'));
+          });
+        })
+        ->when($request->nombre, function ($productos) use ($request) {
+            return $productos->where('nombre', 'like', '%'.$request->nombre.'%');
         })
         ->latest()
         ->get();

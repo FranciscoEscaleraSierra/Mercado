@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
     {
       $this->call(CategoriasSeeder::class);
 
-      $categorias = Categoria::get();
-
       Usuario::factory(1)
           ->supervisor()
           ->create();
@@ -31,7 +29,18 @@ class DatabaseSeeder extends Seeder
 
       Usuario::factory(10)
           ->cliente()
-          ->has(Producto::factory()->count(3), 'productos')
-          ->create();
+          ->create()
+          ->each(function ($cliente) {
+            $productos = Producto::factory()
+              ->count(3)
+              ->create()
+              ->each(function ($producto) {
+                $categorias = Categoria::inRandomOrder()->take(2)->get();
+
+                $producto->categorias()->attach($categorias->pluck('id'));
+              });
+
+            $cliente->productos()->saveMany($productos);
+          });
     }
 }

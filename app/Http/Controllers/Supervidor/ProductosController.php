@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Supervidor;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
@@ -9,10 +9,7 @@ class ProductosController extends Controller
 {
     public function index(Request $request)
     {
-        $productos = Producto::when($request->nombre, function ($productos) use ($request) {
-            return $productos->where('nombre', 'like', '%'.$request->nombre.'%');
-        })
-        ->get();
+        $productos = Producto::get();
 
         return view('productos.index', compact('productos'));
     }

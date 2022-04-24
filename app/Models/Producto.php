@@ -36,7 +36,7 @@ class Producto extends Model
 
     public function categorias()
     {
-      return $this->belongsToMany(Usuario::class, 'productos_categorias', 'categoria_id', 'producto_id');
+      return $this->belongsToMany(Usuario::class, 'productos_categorias', 'producto_id', 'categoria_id');
     }
 
     public function consignacion()
