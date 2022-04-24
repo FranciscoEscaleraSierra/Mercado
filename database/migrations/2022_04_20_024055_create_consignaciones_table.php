@@ -20,6 +20,7 @@ class CreateConsignacionesTable extends Migration
             $table->foreign('producto_id')->references('id')->on('productos');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

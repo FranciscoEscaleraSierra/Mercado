@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Database\Factories\CategoriasFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Database\Factories\CategoriasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Categoria extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * Create a new factory instance for the model.
@@ -19,6 +20,15 @@ class Categoria extends Model
     {
         return CategoriasFactory::new();
     }
+
+    protected $attributes = [
+        'activa' => false,
+    ];
+
+    protected $fillable = [
+        'nombre',
+        'activa',
+    ];
 
     protected $table = 'categorias';
 

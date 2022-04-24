@@ -18,6 +18,7 @@ class CreateCategoriasTable extends Migration
             $table->string('nombre');
             $table->boolean('activa');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

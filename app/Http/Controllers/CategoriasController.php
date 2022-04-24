@@ -37,4 +37,6 @@ class CategoriasController extends Controller
     {
         return view('productos.show', compact('producto'));
     }
+
+
 }

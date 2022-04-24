@@ -1,0 +1,46 @@
+r0.       El sistema debe manejar varios tipos de usuarios ('Encargado', 'Cliente', 'Contador', ‘Supervisor’) y de acuerdo a su rol serán las atribuciones que este tenga.
+
+o        El comportamiento esperado es el siguiente:
+o   A un usuario que no esté registrado (Anónimo) se le permitirá:
+r1.       Hacer una exploración de cada una de las categorías (secciones) para conocer los productos que se tienen en cada una
+r2.       Hacer una búsqueda de productos registrados
+r3.       Conocer los productos que se tienen a la venta (es decir que están consignados) en el mercado (recuerde que cada producto está en una sección [categoría] pueden ser por ejemplo electrodomésticos, línea blanca, etcétera dependiendo del tipo de mercado)
+r4.    Puede registrarse en el sistema, un usuario anónimo por defecto tendrá el rol de 'Cliente'
+
+o   Un usuario con el rol de Supervisor podrá
+r5.  Realizar un CRUD de las categorías del sistema
+    * Considere que dentro de las características de una categoria esta la de si esta activa la categoria o no
+r6.  Hacer una búsqueda de productos registrados por categorías
+r7.  Ver un tablero con la información relevante, p.e.
+    * Cantidad de usuarios registrados
+    * Transacciones
+    * Propuestas
+r8. Crear un nuevo usuario,
+    * Cuando se da de alta un usuario si se le puede especificar el rol que este tendrá
+    * A diferencia de cuando un anónimo se registra que se le asigna el rol de "CLIENTE"
+
+r9.  Actualizar los datos de un usuario, se debe tener en cuenta que no se modifique el password en esta opción
+r10. Restablecer la contraseña de un usuario.
+
+r11.  Puede ver el historial de un vendedor, es decir datos como:
+    * Desde cuando esta dado de alta
+    * Cuantas transacciones ha realizado
+    * Cuantos productos tienen registrados en el sistema de estos:
+        * Cuantos han sido consignados, y de estos:
+            * Cuantos han sido comprados
+            * Cuantos quedan en oferta.
+
+r12.   Puede ver el Kardex de un producto, cuando fue publicado, si alguien se ha interesado (si han realizado preguntas de el), si alguien lo ha comprado
+
+o   Un usuario con el rol de Encargado podrá:
+r13. Hacer una búsqueda de productos registrados por categorías que no han sido consignados
+r14. Restablecer una contraseña de un usuario que sea de rol menor o igual a él ('Encargado', 'Cliente' o 'Contador'’)
+r15. Consignar un producto, esto es que después de REVISAR si es viable lo acepte y cuando se consigne se le pondrá el porcentaje de manejo (si por ejemplo un producto se vende en $100 y se estableció que es del 5%, significa que $95 se entregaran como pago al cliente vendedor y $5 le corresponden a la administración del mercado)
+r16. Si el encargado al revisar decide que no se consigne una propuesta deberá agregar una razón – evalúo que guarde la razón si no se consigna
+r17. Des consignar – se debe hacer uso del concepto "soft delete" puesto que no es posible des consignar si se ha comprado el producto (en mercadolibre una publicación aparece como pausada).
+
+ o   A un usuario del tipo Cliente le permitirá trabajar con los productos de la siguiente forma:
+COMO COMPRADOR
+r18.    Hacer una búsqueda de productos registrados por categoría
+r19.    Hacer una exploración de cada una de las categorías para conocer los productos que se tienen en cada una
+r20.    Hacer preguntas de un producto determinado que ha sido resultado ya sea de la búsqueda o la exploración

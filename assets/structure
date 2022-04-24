@@ -1,0 +1,21 @@
+Usuarios
+    Cliente
+        Index productos (filtrados por categoria)
+    Encargado
+    Contador
+    Supervisor
+
+API
+    public
+        categorias/productos (index con busqueda )
+        categorias/productos/comentarios
+
+    private
+        supervidor/dashboard
+        supervidor/categorias (CRUD)
+        supervidor/categorias/productos (index con busqueda, )
+        supervidor/usuarios (CRUD)
+        supervidor/usuarios/password (para restablecer la contrase;a)
+        supervidor/usuarios/history
+
+
