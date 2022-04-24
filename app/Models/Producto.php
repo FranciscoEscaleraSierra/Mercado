@@ -31,7 +31,7 @@ class Producto extends Model
 
     public function cometarios()
     {
-      return $this->hasMany(Comentario::class, 'producto_id')
+      return $this->hasMany(Comentario::class, 'producto_id');
     }
 
     public function categorias()
