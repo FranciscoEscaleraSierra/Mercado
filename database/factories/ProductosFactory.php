@@ -3,12 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Categoria;
 
-class CategoriasFactory extends Factory
+class ProductosFactory extends Factory
 {
-    protected $model = Categoria::class;
-
     /**
      * Define the model's default state.
      *
@@ -17,8 +14,8 @@ class CategoriasFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->word(),
-            'activa' => $this->faker->boolean(),
+          'nombre' => $this->faker->word(),
+          'precio' => $this->faker->randomDigit(),
         ];
     }
 }

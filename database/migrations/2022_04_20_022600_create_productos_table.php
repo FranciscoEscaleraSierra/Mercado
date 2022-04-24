@@ -17,6 +17,7 @@ class CreateProductosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('precio');
+            $table->integer('existencias');
 
             $table->bigInteger('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuarios');

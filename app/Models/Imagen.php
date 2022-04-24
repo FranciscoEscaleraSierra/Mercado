@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Database\Factories\CategoriasFactory;
+use Database\Factories\ImagenesFactory;
 
-class Categoria extends Model
+class Imagen extends Model
 {
     use HasFactory;
 
@@ -17,15 +17,15 @@ class Categoria extends Model
      */
     protected static function newFactory()
     {
-        return CategoriasFactory::new();
+        return ImagenesFactory::new();
     }
 
-    protected $table = 'categorias';
+    protected $table = 'imagenes';
 
     # Relationships
 
-    public function productos()
+    public function imagenes()
     {
-      return $this->belongsToMany(Producto::class, 'productos_categorias', 'producto_id', 'categoria_id');
+        return $this->morphTo();
     }
 }

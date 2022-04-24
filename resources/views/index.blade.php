@@ -54,7 +54,7 @@
                           <div class="col-sm-2">
                               <ul class="list-unstyled mb-0">
                                   @foreach ($categorias as $categoria)
-                                  <li><a href="{{ route('home') }}?categoria_id={{ $categoria->id }}">{{ $categoria }}</a></li>
+                                  <li><a href="{{ route('home') }}?categoria_id={{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
                                   @endforeach
                               </ul>
                           </div>
