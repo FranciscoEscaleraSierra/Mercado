@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\Supervisor;
+use App\Http\Controllers\Categorias;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
 
@@ -20,10 +21,11 @@ use \App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::post('/', [HomeController::class, 'home'])->name('home.search');
 
-Route::resource('categorias', CategoriasController::class)
-    ->only(['index', 'show', 'create', 'store']);
+Route::get('/productos/{producto}', ProductosController::class)->name('productos.show');
 
-Route::resource('categorias.productos', ProductosController::class)
+Route::get('/categorias/{categoria}', CategoriasController::class)->name('categorias.show');
+
+Route::resource('categorias.productos', Categorias\ProductosController::class)
     ->only(['index', 'show', 'create', 'store']);
 
 Route::prefix('supervisor')->name('supervisor.')->group(function () {
