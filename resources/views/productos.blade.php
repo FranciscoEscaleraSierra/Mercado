@@ -1,5 +1,13 @@
 @extends('layouts.main')
 
+@section('head')
+    <title>Mercado</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon_home.ico') }}" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet" />
+@endsection
+
 @section('content')
     <!-- Product section-->
     <section class="py-5">
