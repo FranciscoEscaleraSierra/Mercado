@@ -24,7 +24,10 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         @include('widgets.search')
     </div>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> efbf0b3cae982e1976bdc6bda94dd0566a5deca8
     <!-- Page content-->
     <div class="container">
         <!-- Side widgets-->
@@ -42,6 +45,7 @@
                         </ul>
                     </div>
                     </div>
+<<<<<<< HEAD
 =======
 </header>
 <!-- Page content-->
@@ -61,6 +65,8 @@
                       </ul>
                   </div>
 >>>>>>> Stashed changes
+=======
+>>>>>>> efbf0b3cae982e1976bdc6bda94dd0566a5deca8
                 </div>
             </div>
         </div>
