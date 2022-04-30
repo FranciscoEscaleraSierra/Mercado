@@ -77,4 +77,9 @@ class Usuario extends Authenticatable
     {
         return $this->morphOne(Imagen::class, 'imagenes');
     }
+
+    public function cometarios()
+    {
+        return $this->morphMany(Comentario::class, 'comentarios');
+    }
 }

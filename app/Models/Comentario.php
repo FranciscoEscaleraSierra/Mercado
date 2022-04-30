@@ -24,19 +24,29 @@ class Comentario extends Model
 
     # Relationships
 
-    public function producto()
+    public function comentarios()
     {
-      return $this->belongsTo(Producto::class, 'producto_id');
+        return $this->morphTo();
     }
 
-    public function compra()
+    // public function producto()
+    // {
+    //   return $this->belongsTo(Producto::class, 'producto_id');
+    // }
+    //
+    // public function compra()
+    // {
+    //   return $this->belongsTo(Compra::class, 'compra_id');
+    // }
+    //
+    // public function consignacion()
+    // {
+    //   return $this->belongsTo(Consignacion::class, 'consignacion_id');
+    // }
+    //
+    public function usuario()
     {
-      return $this->belongsTo(Compra::class, 'compra_id');
-    }
-
-    public function consignacion()
-    {
-      return $this->belongsTo(Consignacion::class, 'consignacion_id');
+      return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
     public function comentario()

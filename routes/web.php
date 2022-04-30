@@ -2,31 +2,23 @@
 
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\Supervisor;
-use App\Http\Controllers\Categorias;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+#Public routes
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::post('/', [HomeController::class, 'home'])->name('home.search');
 
-Route::get('/productos/{producto}', ProductosController::class)->name('productos.show');
-
+Route::get('/categorias/{categoria}/productos', [ProductosController::class, 'index'])->name('categorias.productos.index');
+Route::post('/categorias/{categoria}/productos', [ProductosController::class, 'index'])->name('categorias.productos.search');
+Route::get('/productos/{producto}', [ProductosController::class, 'show'])->name('productos.show');
 Route::get('/categorias/{categoria}', CategoriasController::class)->name('categorias.show');
 
-Route::resource('categorias.productos', Categorias\ProductosController::class)
-    ->only(['index', 'show', 'create', 'store']);
+#Resourse routes for categoria productos
+
 
 Route::prefix('supervisor')->name('supervisor.')->group(function () {
     Route::get('/dashboard', Supervisor\DashboardController::class)->name('dashboard');

@@ -17,8 +17,8 @@ class CreateImagenesTable extends Migration
             $table->id();
 
             $table->string('url');
-            $table->bigInteger('entidad_id');
-            $table->string('entidad_tipo');
+            $table->bigInteger('imagenes_id');
+            $table->string('imagenes_tipo');
 
             $table->timestamps();
         });

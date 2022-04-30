@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Database\Factories\ProductosFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $casts = [
+        'autorizado' => 'datetime',
+    ];
 
     /**
      * Create a new factory instance for the model.
@@ -30,14 +35,14 @@ class Producto extends Model
       return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
-    public function cometarios()
-    {
-      return $this->hasMany(Comentario::class, 'producto_id');
-    }
+    // public function cometarios()
+    // {
+    //   return $this->hasMany(Comentario::class, 'producto_id');
+    // }
 
     public function categorias()
     {
-      return $this->belongsToMany(Usuario::class, 'productos_categorias', 'producto_id', 'categoria_id');
+      return $this->belongsToMany(Categoria::class, 'productos_categorias', 'producto_id', 'categoria_id');
     }
 
     public function consignacion()
@@ -53,5 +58,19 @@ class Producto extends Model
     public function imagen()
     {
         return $this->morphOne(Imagen::class, 'imagenes');
+    }
+
+    public function comentarios()
+    {
+        return $this->morphMany(Comentario::class, 'comentarios');
+    }
+
+    # Scopes
+
+    public function scopeConsignado(Builder $query)
+    {
+        return $query->whereHas('consignacion', function (Builder $consignacion) {
+            $consignacion->whereNotNull('autorizado');
+        });
     }
 }

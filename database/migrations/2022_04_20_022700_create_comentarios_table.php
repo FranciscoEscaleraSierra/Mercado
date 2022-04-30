@@ -18,14 +18,11 @@ class CreateComentariosTable extends Migration
 
             $table->text('comentario');
 
-            $table->bigInteger('producto_id')->unsigned()->nullable();
-            $table->foreign('producto_id')->references('id')->on('productos');
+            $table->bigInteger('comentarios_id');
+            $table->string('comentarios_tipo');
 
-            $table->bigInteger('compra_id')->unsigned()->nullable();
-            $table->foreign('compra_id')->references('id')->on('compras');
-
-            $table->bigInteger('consignacion_id')->unsigned()->nullable();
-            $table->foreign('consignacion_id')->references('id')->on('consignaciones');
+            $table->bigInteger('usuario_id')->unsigned()->nullable();
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
 
             $table->bigInteger('comentario_id')->unsigned()->nullable();
             $table->foreign('comentario_id')->references('id')->on('comentarios');

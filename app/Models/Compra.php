@@ -36,8 +36,13 @@ class Compra extends Model
 
     public function comentarios()
     {
-      return $this->hasMany(Comentario::class, 'compra_id');
+        return $this->morphMany(Imagen::class, 'comentarios');
     }
+
+    // public function comentarios()
+    // {
+    //   return $this->hasMany(Comentario::class, 'compra_id');
+    // }
 
     public function imagen()
     {

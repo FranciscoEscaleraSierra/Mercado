@@ -25,6 +25,7 @@ class ProductosFactory extends Factory
           'nombre' => $this->faker->word(),
           'precio' => $this->faker->randomDigit(),
           'existencias' => $this->faker->randomDigit(),
+          'descripcion' => $this->faker->text(),
         ];
     }
 }

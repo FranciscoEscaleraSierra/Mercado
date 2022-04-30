@@ -24,6 +24,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         @include('widgets.search')
     </div>
+<<<<<<< Updated upstream
     <!-- Page content-->
     <div class="container">
         <!-- Side widgets-->
@@ -41,6 +42,25 @@
                         </ul>
                     </div>
                     </div>
+=======
+</header>
+<!-- Page content-->
+<div class="container">
+    <!-- Side widgets-->
+    <div class="col-lg-12">
+        <!-- Categories widget-->
+        <div class="card mb-12">
+            <div class="card-header">Categorias</div>
+            <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-2">
+                      <ul class="list-unstyled mb-0">
+                          @foreach ($categorias as $categoria)
+                          <li><a href="{{ route('categorias.productos.index', ['categoria' => $categoria->id]) }}">{{ $categoria->nombre }}</a></li>
+                          @endforeach
+                      </ul>
+                  </div>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
