@@ -4,49 +4,18 @@
     <title>Mercado</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon_home.ico') }}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('css/home.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/producto.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/usuarios.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet" />
 @endsection
 
 
 @section('content')
 
-    <!-- Page header with logo and tagline-->
-    <header class="py-5 bg-light border-bottom mb-4">
-        <div class="container">
-            <div class="text-center my-5">
-                <h1 class="fw-bolder">Welcome to my mercado!</h1>
-                <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
-            </div>
-        </div>
-    </header>
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        @include('widgets.search')
-    </div>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
->>>>>>> efbf0b3cae982e1976bdc6bda94dd0566a5deca8
-    <!-- Page content-->
-    <div class="container">
-        <!-- Side widgets-->
-        <div class="col-lg-12">
-            <!-- Categories widget-->
-            <div class="card mb-12">
-                <div class="card-header">Categorias</div>
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-sm-2">
-                        <ul class="list-unstyled mb-0">
-                            @foreach ($categorias as $categoria)
-                            <li><a href="{{ route('home') }}?categoria_id={{ $categoria->id }}">{{ $categoria->nombre }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    </div>
-<<<<<<< HEAD
-=======
 </header>
 <!-- Page content-->
 <div class="container">
@@ -64,9 +33,6 @@
                           @endforeach
                       </ul>
                   </div>
->>>>>>> Stashed changes
-=======
->>>>>>> efbf0b3cae982e1976bdc6bda94dd0566a5deca8
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 
 class UsuariosController extends Controller
@@ -12,23 +13,52 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::get();
 
-        return view('usuarios.index', compact('usuarios'));
+        return view('supervisor.usuarios.index', compact('usuarios'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        return view('usuarios.create');
+        return view('supervisor.usuarios.create');
     }
 
     public function store(Request $request)
     {
-        (new Usuario($request))->save();
+        (new Usuario($request->input()))->save();
 
-        return redirect(route('usuarios.show', ['usuario_id' => $usuario->id]));
+        return redirect(route('supervisor.usuarios.show', ['usuario_id' => $usuario->id]));
     }
 
-    public function show(Usuario $usuario, Request $request)
+    // Muestra el Kardex del usuario
+    public function show(Usuario $usuario)
     {
-        return view('usuarios.show', compact('usuario'));
+        return view('supervisor.usuarios.show', compact('usuario'));
+    }
+
+    public function edit(Usuario $usuario, Request $request)
+    {
+        return view('supervisor.usuarios.edit', compact('usuario'));
+    }
+
+    public function update(Usuario $usuario, Request $request)
+    {
+        $usuario->fill($request->except(['password']))->save();
+
+        return redirect(route('supervisor.usuarios.show', ['usuario_id' => $usuario->id]));
+    }
+
+    public function resetPassword(Usuario $usuario, Request $request)
+    {
+        $usuario->fill([
+            'password' => Hash::make($request->password)
+        ])->save();
+
+        return redirect(route('supervisor.usuarios.show', ['usuario_id' => $usuario->id]));
+    }
+
+    public function destroy(Usuario $usuario)
+    {
+        $usuario->delete();
+
+        return redirect(route('supervisor.usuarios.index'));
     }
 }

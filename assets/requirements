@@ -1,9 +1,8 @@
-r0.       El sistema debe manejar varios tipos de usuarios ('Encargado', 'Cliente', 'Contador', ‘Supervisor’) y de acuerdo a su rol serán las atribuciones que este tenga.
-
-o        El comportamiento esperado es el siguiente:
-o   A un usuario que no esté registrado (Anónimo) se le permitirá:
-r1.       Hacer una exploración de cada una de las categorías (secciones) para conocer los productos que se tienen en cada una
-r2.       Hacer una búsqueda de productos registrados
+r0.El sistema debe manejar varios tipos de usuarios ('Encargado', 'Cliente', 'Contador', ‘Supervisor’) y de acuerdo a su rol serán las atribuciones que este tenga.
+ o El comportamiento esperado es el siguiente:
+ o A un usuario que no esté registrado (Anónimo) se le permitirá:
+r1.Hacer una exploración de cada una de las categorías (secciones) para conocer los productos que se tienen en cada una
+r2.Hacer una búsqueda de productos registrados
 r3.       Conocer los productos que se tienen a la venta (es decir que están consignados) en el mercado (recuerde que cada producto está en una sección [categoría] pueden ser por ejemplo electrodomésticos, línea blanca, etcétera dependiendo del tipo de mercado)
 r4.    Puede registrarse en el sistema, un usuario anónimo por defecto tendrá el rol de 'Cliente'
 

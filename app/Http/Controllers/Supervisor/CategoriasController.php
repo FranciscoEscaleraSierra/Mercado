@@ -35,6 +35,11 @@ class CategoriasController extends Controller
         return redirect(route('supervisor.categorias.index'));
     }
 
+    public function show(Categoria $categoria)
+    {
+        return view('supervisor.categorias.show', compact('categoria'));
+    }
+
     public function edit(Categoria $categoria, Request $request)
     {
         return view('supervisor.categorias.edit')->with('producto', $producto);

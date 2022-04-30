@@ -12,23 +12,42 @@ class ProductosController extends Controller
     {
         $productos = Producto::get();
 
-        return view('productos.index', compact('productos'));
+        return view('supervisor.productos.index', compact('productos'));
     }
 
     public function create(Request $request)
     {
-        return view('productos.create');
+        return view('supervisor.productos.create');
     }
 
     public function store(Request $request)
     {
         (new Producto($request))->save();
 
-        return redirect(route('productos.show', ['producto_id' => $producto->id]));
+        return redirect(route('supervisor.productos.show', ['producto_id' => $producto->id]));
     }
 
     public function show(Producto $producto, Request $request)
     {
-        return view('productos.show', compact('producto'));
+        return view('supervisor.productos.show', compact('producto'));
+    }
+
+    public function edit(Producto $producto, Request $request)
+    {
+        return view('supervisor.productos.edit', compact('producto'));
+    }
+
+    public function update(Producto $producto, Request $request)
+    {
+        $producto->fill($request->input())->save();
+
+        return redirect(route('supervisor.productos.show', ['producto_id' => $producto->id]));
+    }
+
+    public function destroy(Producto $producto)
+    {
+        $producto->delete();
+
+        return redirect(route('supervisor.productos.index'));
     }
 }
