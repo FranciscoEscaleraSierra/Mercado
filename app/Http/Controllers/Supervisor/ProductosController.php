@@ -27,6 +27,9 @@ class ProductosController extends Controller
         return redirect(route('supervisor.productos.show', ['producto_id' => $producto->id]));
     }
 
+    /**
+     * Este es el Kardex del producto
+    **/
     public function show(Producto $producto, Request $request)
     {
         return view('supervisor.productos.show', compact('producto'));

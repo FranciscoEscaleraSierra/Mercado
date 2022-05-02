@@ -28,6 +28,7 @@ class CreateComentariosTable extends Migration
             $table->foreign('comentario_id')->references('id')->on('comentarios');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

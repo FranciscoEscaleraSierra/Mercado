@@ -58,5 +58,4 @@ class CategoriasController extends Controller
 
         return redirect(route('supervisor.categorias.index'));
     }
-
 }

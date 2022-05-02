@@ -13,7 +13,8 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::get();
 
-        return view('supervisor.usuarios.index', compact('usuarios'));
+        return $usuarios;
+        // return view('supervisor.usuarios.index', compact('usuarios'));
     }
 
     public function create()

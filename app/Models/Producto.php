@@ -73,4 +73,22 @@ class Producto extends Model
             $consignacion->whereNotNull('autorizado');
         });
     }
+
+    public function scopeComprados(Builder $producto)
+    {
+        return $producto
+            ->whereHas('consignacion', function (Builder $consignacion) {
+                $consignacion->whereNotNull('autorizado');
+            })
+            ->whereHas('compras');
+    }
+
+    public function scopeExistencias(Builder $producto)
+    {
+        return $producto
+            ->whereHas('consignacion', function (Builder $consignacion) {
+                $consignacion->whereNotNull('autorizado');
+            })
+            ->where('existencias', '>', '0');
+    }
 }

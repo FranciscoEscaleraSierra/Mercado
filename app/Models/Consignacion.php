@@ -34,4 +34,11 @@ class Consignacion extends Model
     {
       return $this->hasMany(Comentario::class, 'consignacion_id');
     }
+
+    # Scoope
+
+    // public function scope(Builder $query)
+    // {
+    //     return $query->
+    // }
 }

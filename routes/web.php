@@ -23,19 +23,24 @@ Route::get('/categorias/{categoria}', CategoriasController::class)->name('catego
 
 # Supervisor routes
 Route::prefix('supervisor')->name('supervisor.')->group(function () {
-    # Usuarios routes for supervisor
-    Route::get('/usuarios/{usuario}/delete', [Supervisor\CategoriasController::class, 'destroy'])->name('usuarios.destroy');
-    Route::put('/usuarios/{usuario}/password', [Supervisor\CategoriasController::class, 'resetPassword'])->name('usuarios.password.reset');
-    Route::resource('/usuarios', Supervisor\UsuariosController::class);
+    Route::prefix('usuarios')->name('usuarios.')->group(function () {
+        Route::get('/{usuario}/historial', Supervisor\HistorialController::class)->name('historial');
+
+        # Usuarios routes for supervisor
+        Route::get('/{usuario}/delete', [Supervisor\UsuariosController::class, 'destroy'])->name('destroy');
+        Route::put('/{usuario}/password', [Supervisor\UsuariosController::class, 'resetPassword'])->name('password.reset');
+        Route::resource('/', Supervisor\UsuariosController::class);
+    });
 
     # Categorias routes for supervisor
     Route::get('/categorias/{categoria}/delete', [Supervisor\CategoriasController::class, 'destroy'])->name('categorias.destroy');
     Route::resource('/categorias', Supervisor\CategoriasController::class)->except('destroy');
 
     # Productos routes for supervisor
-    Route::get('/productos/{producto}/delete', [Supervisor\CategoriasController::class, 'destroy'])->name('productos.destroy');
-    Route::resource('/productos', Supervisor\CategoriasController::class)->except('destroy');
-
+    Route::get('/productos/{producto}/delete', [Supervisor\ProductosController::class, 'destroy'])->name('productos.destroy');
+    Route::resource('/productos', Supervisor\ProductosController::class)->except('destroy');
 
     Route::get('/dashboard', Supervisor\DashboardController::class)->name('dashboard');
 });
+
+# Encargado routes

@@ -26,6 +26,7 @@ class CreateComprasTable extends Migration
             $table->foreign('usuario_id')->references('id')->on('usuarios');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
