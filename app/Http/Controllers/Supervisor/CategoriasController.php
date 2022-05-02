@@ -42,7 +42,7 @@ class CategoriasController extends Controller
 
     public function edit(Categoria $categoria, Request $request)
     {
-        return view('supervisor.categorias.edit')->with('producto', $producto);
+        return view('supervisor.categorias.edit')->with('categoria', $categoria);
     }
 
     public function update(Categoria $categoria, Request $request)
