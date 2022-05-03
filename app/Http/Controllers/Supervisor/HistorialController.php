@@ -31,7 +31,7 @@ class HistorialController extends Controller
             },
         ]);
 
-        return new HistorialUsuarioResource($usuario);
-        // return view('supervisor.usuario.historial', compact('usuario'));
+        // return new HistorialUsuarioResource($usuario);
+        return view('supervisor.usuarios.historial', compact('usuario'));
     }
 }

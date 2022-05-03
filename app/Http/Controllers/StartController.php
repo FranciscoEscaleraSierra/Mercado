@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Categoria;
 use App\Models\Producto;
 
-class HomeController extends Controller
+class StartController extends Controller
 {
-    public function home(Request $request)
+    public function start(Request $request)
     {
         $categorias = Categoria::when($request->nombre, function ($categoria) use ($request) {
             return $categoria->where('nombre', 'like', '%'.$request->nombre.'%')
@@ -29,6 +29,6 @@ class HomeController extends Controller
         ->latest()
         ->get();
 
-        return view('home', compact('categorias', 'productos'));
+        return view('start', compact('categorias', 'productos'));
     }
 }
