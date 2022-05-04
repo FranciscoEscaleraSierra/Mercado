@@ -1,4 +1,9 @@
-@extends('layouts.main')
+@extends('layout.base')
+
+@section('head')
+        <link href="{{ asset('css/inicio.css') }}" rel="stylesheet" />
+@endsection
+
 
 @section('content')
 <div class="container">
@@ -55,4 +60,4 @@
         </div>
     </div>
 </div>
-@endsection()
+@endsection

@@ -1,4 +1,8 @@
-@extends('layouts.main')
+@extends('layout.base')
+
+@section('head')
+        <link href="{{ asset('css/inicio.css') }}" rel="stylesheet" />
+@endsection
 
 @section('content')
     <table class="table">
