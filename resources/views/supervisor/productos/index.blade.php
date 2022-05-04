@@ -2,9 +2,6 @@
 
 
 @section('head')
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{{ asset('assets/inicio.ico') }}" />
-        <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/inicio.css') }}" rel="stylesheet" />
 @endsection
 

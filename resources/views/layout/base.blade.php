@@ -14,28 +14,7 @@
     </head>
     <body>
         <!-- Responsive navbar-->
-
-
-
-        @if(view('supervisor.categorias.index') || view('supervisor.categorias.create') || view('supervisor.categorias.edit') || view('supervisor.categorias.show')
-        || ('supervisor.categorias.index') || view('supervisor.productos.create') || view('supervisor.productos.edit') || view('supervisor.productos.show')
-        || ('encargado.categorias.index') || view('encargado.categorias.create') || view('encargado.categorias.edit') || view('encargado.categorias.show')
-        || ('encargado.productos.index') || view('encargado.productos.create') || view('encargado.producto.edit') || view('encargado.productos.show')
-        )
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('start') }}">Mercado</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('signup') }}">Registrarse</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        @else
-               <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('start') }}">Mercado</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -58,7 +37,6 @@
                 </div>
             </div>
         </nav>
-        @endif
     </head>
     <!-- Page content-->
 
