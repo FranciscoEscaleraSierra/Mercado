@@ -6,13 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Producto;
+use App\Models\Categoria;
 
 class ProductosController extends Controller
 {
-    public function index(Request $request)
+    public function index(Categoria $categoria, Request $request)
     {
-        $productos = Producto::get();
-
+        $productos = Producto::with('categorias')->deCategoria($categoria)
+            ->when($request->nombre, function ($productos) use ($request) {
+                return $productos->where('nombre', 'like', '%'.$request->nombre.'%');
+            })
+            ->get();
         return view('encargado.productos.index', compact('productos'));
     }
 

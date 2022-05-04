@@ -57,5 +57,6 @@ Route::prefix('encargado')->name('encargado')->group(function() {
 
     # Productos for supervisor
     Route::get('/productos/{producto}/delete', [Encargado\ProductosController::class, 'destroy'])->name('productos.destroy');
+    Route::get('/categorias/{categoria}/productos', [Encargado\ProductosController::class, 'index'])->name('productos.index');
     Route::resource('/productos', Encargado\ProductosController::class)->except('destroy');
 });

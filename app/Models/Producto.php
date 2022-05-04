@@ -67,6 +67,15 @@ class Producto extends Model
 
     # Scopes
 
+    public function scopeNoConsignado(Builder $query)
+    {
+        return $query
+            ->has('consignacion', '=', 0)
+            ->orWhereHas('consignacion', function (Builder $consignacion) {
+                $consignacion->whereNull('autorizado');
+            });
+    }
+
     public function scopeConsignado(Builder $query)
     {
         return $query->whereHas('consignacion', function (Builder $consignacion) {
@@ -89,6 +98,14 @@ class Producto extends Model
             ->whereHas('consignacion', function (Builder $consignacion) {
                 $consignacion->whereNotNull('autorizado');
             })
-            ->where('existencias', '>', '0');
+            ->where('existencias', '>', 0);
+    }
+
+    public function scopeDeCategoria(Builder $producto, Categoria $categoria)
+    {
+        return $producto
+            ->whereHas('categorias', function (Builder $producto) use ($categoria) {
+                $producto->where('id', $categoria->id);
+            });
     }
 }
