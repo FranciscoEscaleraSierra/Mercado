@@ -30,7 +30,7 @@ Route::prefix('supervisor')->name('supervisor.')->group(function () {
         # Usuarios routes for supervisor
         Route::get('/{usuario}/delete', [Supervisor\UsuariosController::class, 'destroy'])->name('destroy');
         Route::put('/{usuario}/password', [Supervisor\UsuariosController::class, 'resetPassword'])->name('password.reset');
-        Route::resource('/', Supervisor\UsuariosController::class);
+        Route::resource('/', Supervisor\UsuariosController::class)->except('destroy');
     });
 
     # Categorias routes for supervisor

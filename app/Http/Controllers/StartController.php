@@ -29,6 +29,6 @@ class StartController extends Controller
         ->latest()
         ->get();
 
-        return view('start', compact('categorias', 'productos'));
+        return view('inicio', compact('categorias', 'productos'));
     }
 }
