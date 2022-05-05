@@ -1,4 +1,10 @@
-@extends('layouts.main')
+@endsection()
+@extends('layout.base')
+
+@section('head')
+        <link href="{{ asset('css/inicio.css') }}" rel="stylesheet" />
+@endsection
+
 
 @section('content')
 <div class="container">
@@ -9,20 +15,20 @@
     </div>
     <div class="row mt-2 mb-4">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <form method="POST" action="{{ route('supervisor.categorias.store') }}">
+            <form method="" action="">
                 @csrf
-                <div class="form-floating mb-3">
+                <div class="mb-3">
                     <input
                         type="text"
                         name="nombre"
                         class="form-control"
                         value="{{ old('nombre') }}"
                         id="floatingInput"
-                        placeholder="Categoria"
+                        placeholder="Nombre de la categoria"
                     >
                 </div>
 
-                <div class="form-check mb-3">
+                <div class="mb-3">
                     <input
                         class="form-check-input"
                         type="checkbox"
@@ -55,4 +61,4 @@
         </div>
     </div>
 </div>
-@endsection()
+@endsection

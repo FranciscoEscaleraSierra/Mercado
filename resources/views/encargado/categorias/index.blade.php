@@ -1,4 +1,8 @@
-@extends('layouts.main')
+@extends('layout.base')
+
+@section('head')
+        <link href="{{ asset('css/inicio.css') }}" rel="stylesheet" />
+@endsection
 
 @section('content')
     <table class="table">
@@ -19,8 +23,8 @@
               <td>{{ $categoria->activa }}</td>
               <td>{{ $categoria->productos_count }}</td>
               <td>
-                <a href="{{ route('supervisor.categorias.edit', [$categoria->id]) }}" class="btn btn-small">Editar</a>
-                <a href="{{ route('supervisor.categorias.destroy', [$categoria->id]) }}" class="btn btn-small">Eliminar</a>
+                <a href="{{ route('', [$categoria->id]) }}" class="btn btn-">Editar</a>
+                <a href="{{ route('', [$categoria->id]) }}" class="btn btn-danger">Eliminar</a>
               </td>
             </tr>
         @endforeach

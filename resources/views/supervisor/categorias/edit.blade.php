@@ -9,37 +9,39 @@
 <div class="container">
     <div class="row my-3">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <h2>Editar Categoria</h2>
+            <h2>Categoria : {{$categoria -> nombre}}</h2>
         </div>
     </div>
     <div class="row mt-2 mb-4">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <form method="POST" action="{{ route('supervisor.categorias.store') }}">
+            <form method="" action="">
                 @csrf
-                <div class="form-floating mb-3">
+                <label class="col"for="existencia">
+                    Nombre de la categoria:
+                </label>
+                <div class="mb-3">
                     <input
                         type="text"
                         name="nombre"
                         class="form-control"
                         value="{{ $categoria -> nombre }}"
                         id="floatingInput"
-                        placeholder="Categoria"
                     >
                 </div>
 
+                <label class="col"for="existencia">
+                    Estado de la categoria:
+                </label>
                 <div class="form-check mb-3">
                     <input
                         class="form-check-input"
                         type="checkbox"
                         value="1"
-                        checked="{{ old('activa') ? 'checked' : '' }}"
+                        {{ $categoria -> activa == 1 ? 'checked' : ''}}
                         name="activa"
                         id="activa"
                     >
-                    <label
-                        class="form-check-label"
-                        for="activa"
-                    >
+                    <label class="form-check-label" for="activa">
                         Activa
                     </label>
                 </div>
