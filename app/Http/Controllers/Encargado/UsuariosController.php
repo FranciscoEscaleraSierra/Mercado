@@ -13,8 +13,7 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::get();
 
-        return $usuarios;
-        // return view('encargado.usuarios.index', compact('usuarios'));
+        return view('encargado.usuarios.index', compact('usuarios'));
     }
 
     public function create()
@@ -24,9 +23,11 @@ class UsuariosController extends Controller
 
     public function store(Request $request)
     {
-        (new Usuario($request->input()))->save();
+        $usuario = (new Usuario($request->input()));
+        
+        $usuario->save();
 
-        return redirect(route('encargado.usuarios.show', ['usuario_id' => $usuario->id]));
+        return redirect(route('encargado.usuarios.show', compact('usuario')));
     }
 
     public function show(Usuario $usuario)
@@ -43,7 +44,7 @@ class UsuariosController extends Controller
     {
         $usuario->fill($request->except(['password']))->save();
 
-        return redirect(route('encargado.usuarios.show', ['usuario_id' => $usuario->id]));
+        return redirect(route('encargado.usuarios.show', compact('usuario')));
     }
 
     public function resetPassword(Usuario $usuario, Request $request)

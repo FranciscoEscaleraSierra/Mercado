@@ -10,8 +10,11 @@ class ProductosController extends Controller
 {
     public function index(Request $request)
     {
-        $productos = Producto::get();
-
+        $productos = Producto::with('categorias')->deCategoria($categoria)
+            ->when($request->nombre, function ($productos) use ($request) {
+                return $productos->where('nombre', 'like', '%'.$request->nombre.'%');
+            })
+            ->get();
         return view('supervisor.productos.index', compact('productos'));
     }
 

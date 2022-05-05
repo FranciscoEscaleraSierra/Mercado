@@ -23,6 +23,9 @@ class CreateProductosTable extends Migration
             $table->bigInteger('usuario_id')->unsigned()->nullable();
             $table->foreign('usuario_id')->references('id')->on('usuarios');
 
+            $table->bigInteger('consignacion_id')->unsigned()->nullable();
+            $table->foreign('consignacion_id')->references('id')->on('consignaciones');
+
             $table->timestamps();
             $table->softDeletes();
         });

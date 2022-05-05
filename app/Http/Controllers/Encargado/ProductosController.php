@@ -27,9 +27,13 @@ class ProductosController extends Controller
 
     public function store(Request $request)
     {
-        (new Producto($request))->save();
+        $producto = (new Producto($request->input());
 
-        return redirect(route('encargado.productos.show', ['producto_id' => $producto->id]));
+        $producto->save();
+
+        $consignacion = $producto->consignacion()->firstOrCreate();
+
+        return redirect(route('encargado.productos.show', compact('producto', 'consignacion')));
     }
 
     /**
@@ -47,9 +51,20 @@ class ProductosController extends Controller
 
     public function update(Producto $producto, Request $request)
     {
-        $producto->fill($request->input())->save();
+        $producto->fill($request->input('producto'))->save();
 
-        return redirect(route('encargado.productos.show', ['producto_id' => $producto->id]));
+        $consignacion = $producto->consignacion;
+
+        if ($request->input('consignacion.autorizado'))
+        {
+            $consignacion->autorizado = Carbon::now();
+        }
+
+        $consignacion->razon = $request->input('consignacion.razon');
+
+        $consignacion->save();
+
+        return redirect(route('encargado.productos.show', compact('producto')));
     }
 
     public function destroy(Producto $producto)
@@ -57,19 +72,5 @@ class ProductosController extends Controller
         $producto->delete();
 
         return redirect(route('encargado.productos.index'));
-    }
-
-    public function agregarRazon(Producto $producto, Request $request)
-    {
-        $comentario = new Comentario;
-
-        $comentario->text = $request->text;
-        //
-        // $producto->loadCount([
-        //     'producto as productos_consignados_count' => function ($producto) {
-        //         $producto->consignado();
-        //     }]);
-
-        $comentario->save();
     }
 }

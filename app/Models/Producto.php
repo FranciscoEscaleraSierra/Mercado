@@ -47,7 +47,7 @@ class Producto extends Model
 
     public function consignacion()
     {
-      return $this->hasOne(Consignacion::class, 'producto_id');
+      return $this->belongsTo(Consignacion::class, 'producto_id');
     }
 
     public function compras()

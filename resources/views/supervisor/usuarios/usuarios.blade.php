@@ -18,7 +18,17 @@
                 <a class="navbar-brand" href="{{ route('start') }}">Mercado</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 @section('search_widget')
-                    @include('widgets.home_search')
+                <!-- Search widget-->
+                <div class="col-lg-9">
+                    <div class="input-group">
+                        <form method="POST" action="{{ route('start.search') }}">
+                            @csrf
+                            <input class="form-control" type="text" placeholder="Busca un producto!!" aria-label="Enter search term..." aria-describedby="button-search" name='nombre' value="{{ old('nombre') }}"/>
+                            <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Search widget end  -->
                 @show
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

@@ -30,8 +30,8 @@ Route::prefix('supervisor')->name('supervisor.')->group(function () {
         # Usuarios routes for supervisor
         Route::get('/{usuario}/delete', [Supervisor\UsuariosController::class, 'destroy'])->name('destroy');
         Route::put('/{usuario}/password', [Supervisor\UsuariosController::class, 'resetPassword'])->name('password.reset');
-        Route::resource('/', Supervisor\UsuariosController::class)->except('destroy');
     });
+    Route::resource('/usuarios', Supervisor\UsuariosController::class)->except('destroy');
 
     # Categorias routes for supervisor
     Route::get('/categorias/{categoria}/delete', [Supervisor\CategoriasController::class, 'destroy'])->name('categorias.destroy');
@@ -47,16 +47,19 @@ Route::prefix('supervisor')->name('supervisor.')->group(function () {
 
 # Encargado routes
 
-Route::prefix('encargado')->name('encargado')->group(function() {
+Route::prefix('encargado')->name('encargado.')->group(function() {
     # Usuarios routes for supervisor
     Route::prefix('usuarios')->name('usuarios.')->group(function () {
         Route::get('/{usuario}/delete', [Encargado\UsuariosController::class, 'destroy'])->name('usuarios.destroy');
         Route::put('/{usuario}/password', [Encargado\UsuariosController::class, 'resetPassword'])->name('password.reset');
-        Route::resource('/', Encargado\UsuariosController::class)->except('destroy');
     });
+    Route::resource('/usuarios', Encargado\UsuariosController::class)->except('destroy');
 
-    # Productos for supervisor
+    # Productos for encargado
     Route::get('/productos/{producto}/delete', [Encargado\ProductosController::class, 'destroy'])->name('productos.destroy');
     Route::get('/categorias/{categoria}/productos', [Encargado\ProductosController::class, 'index'])->name('productos.index');
     Route::resource('/productos', Encargado\ProductosController::class)->except('destroy');
+
+    # Consignaciones for encargado
+    Route::get('/consignaciones/{consignacion}/delete', [Encargado\ConsignacionesController::class, 'destroy'])->name('consignaciones.destroy');
 });

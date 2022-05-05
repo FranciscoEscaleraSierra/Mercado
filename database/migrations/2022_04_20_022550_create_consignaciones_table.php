@@ -15,7 +15,7 @@ class CreateConsignacionesTable extends Migration
     {
         Schema::create('consignaciones', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('autorizado');
+            $table->dateTime('autorizado')->nullable()->default(null);
             $table->text('razon');
 
             $table->bigInteger('producto_id')->unsigned();

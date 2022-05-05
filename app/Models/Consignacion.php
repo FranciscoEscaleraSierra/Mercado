@@ -11,6 +11,14 @@ class Consignacion extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $attributes = [
+        'autorizado' => null,
+    ];
+
+    protected $casts = [
+        'autorizado' => 'datetime'
+    ];
+
     /**
      * Create a new factory instance for the model.
      *
@@ -27,7 +35,7 @@ class Consignacion extends Model
 
     public function producto()
     {
-      return $this->belongsTo(Producto::class, 'producto_id');
+      return $this->hasOne(Producto::class, 'producto_id');
     }
 
     public function comentarios()
