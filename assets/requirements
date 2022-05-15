@@ -14,7 +14,7 @@ r7.  Ver un tablero con la información relevante, p.e.
     * Cantidad de usuarios registrados
     * Transacciones
     * Propuestas
-******r8. Crear un nuevo usuario,
+r8. Crear un nuevo usuario,
     * Cuando se da de alta un usuario si se le puede especificar el rol que este tendrá
     * A diferencia de cuando un anónimo se registra que se le asigna el rol de "CLIENTE"
 

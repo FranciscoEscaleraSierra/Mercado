@@ -19,7 +19,7 @@ class CreateComentariosTable extends Migration
             $table->text('comentario');
 
             $table->bigInteger('comentarios_id');
-            $table->string('comentarios_tipo');
+            $table->string('comentarios_type');
 
             $table->bigInteger('usuario_id')->unsigned()->nullable();
             $table->foreign('usuario_id')->references('id')->on('usuarios');

@@ -10,7 +10,7 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon_home.ico') }}" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{ asset('css/home.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/producto.css') }}" rel="stylesheet" />
 
     </head>
     <body>
@@ -34,8 +34,8 @@
                 @show
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Entrar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('signup') }}">Registrarse</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Entrar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">Registrarse</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,13 +54,21 @@
                             <span>${{ $producto->precio * 100}}</span>
                         </div>
                         <p class="lead">{{ $producto->descripcion }}</p>
-                        <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Comprar
-                            </button>
-                        </div>
+                        </br>
+                            <a href="{{ route('cliente.compra.create', [$producto->id, 'pago' => 0]) }}">
+                                <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Compra electronica
+                                </button>
+                            </a>
+                            <a href="{{ route('cliente.compra.create', [$producto->id, 'pago' => 1]) }}">
+                                <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Pago en ventanilla
+                                </button>
+                            </a>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -71,7 +79,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Core theme JS-->
-        <script src="{{ asset('js/home.js') }}"></script>
-        <script src="{{ asset('js/usuarios.js') }}"></script>
+        <script src="{{ asset('js/producto.js') }}"></script>
     </body>
 </html>

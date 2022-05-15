@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Encargado;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\Encargado\ProductoResource;
+use App\Http\Resources\Encargado\ProductosResource;
 use App\Models\Producto;
 use App\Models\Categoria;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProductosController extends Controller
 {
@@ -17,7 +19,9 @@ class ProductosController extends Controller
                 return $productos->where('nombre', 'like', '%'.$request->nombre.'%');
             })
             ->get();
-        return view('encargado.productos.index', compact('productos'));
+
+        return ProductosResource::collection($productos);
+        // return view('encargado.productos.index', compact('productos'));
     }
 
     public function create(Request $request)
@@ -27,7 +31,7 @@ class ProductosController extends Controller
 
     public function store(Request $request)
     {
-        $producto = (new Producto($request->input());
+        $producto = (new Producto($request->input()));
 
         $producto->save();
 
@@ -41,7 +45,8 @@ class ProductosController extends Controller
     **/
     public function show(Producto $producto, Request $request)
     {
-        return view('encargado.productos.show', compact('producto'));
+        return new ProductoResource($producto);
+        // return view('encargado.productos.show', compact('producto'));
     }
 
     public function edit(Producto $producto, Request $request)
@@ -58,6 +63,9 @@ class ProductosController extends Controller
         if ($request->input('consignacion.autorizado'))
         {
             $consignacion->autorizado = Carbon::now();
+
+            $producto->precio = $producto->precio * 1.05;
+            $producto->save();
         }
 
         $consignacion->razon = $request->input('consignacion.razon');

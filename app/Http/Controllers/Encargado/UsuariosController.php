@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Encargado;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Encargado\UsuarioResource;
+use App\Http\Resources\Encargado\UsuariosResource;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Usuario;
 
 class UsuariosController extends Controller
 {
@@ -13,7 +15,8 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::get();
 
-        return view('encargado.usuarios.index', compact('usuarios'));
+        return UsuariosResource::collection($usuarios);
+        // return view('encargado.usuarios.index', compact('usuarios'));
     }
 
     public function create()
@@ -24,7 +27,7 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         $usuario = (new Usuario($request->input()));
-        
+
         $usuario->save();
 
         return redirect(route('encargado.usuarios.show', compact('usuario')));
@@ -32,7 +35,8 @@ class UsuariosController extends Controller
 
     public function show(Usuario $usuario)
     {
-        return view('encargado.usuarios.show', compact('usuario'));
+        return new UsuarioResource($usuario);
+        // return view('encargado.usuarios.show', compact('usuario'));
     }
 
     public function edit(Usuario $usuario, Request $request)

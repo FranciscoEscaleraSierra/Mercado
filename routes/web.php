@@ -6,24 +6,23 @@ use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\Supervisor;
 use App\Http\Controllers\Encargado;
+use App\Http\Controllers\Cliente;
 use Illuminate\Support\Facades\Route;
 
 # Public routes
-
 Route::get('/', [StartController::class, 'start'])->name('start');
 Route::post('/', [StartController::class, 'start'])->name('start.search');
-Route::view('/login', 'login')->name('login');
-Route::view('/signup', 'signup')->name('signup');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
 
 Route::get('/categorias/{categoria}/productos', [ProductosController::class, 'index'])->name('categorias.productos.index');
 Route::post('/categorias/{categoria}/productos', [ProductosController::class, 'index'])->name('categorias.productos.search');
-Route::get('/productos/{producto}', [ProductosController::class, 'show'])->name('productos.show');
 Route::get('/categorias/{categoria}', CategoriasController::class)->name('categorias.show');
-
-# Resourse routes for categoria productos
+Route::get('/productos/{producto}', [ProductosController::class, 'show'])->name('productos.show');
 
 # Supervisor routes
-Route::prefix('supervisor')->name('supervisor.')->group(function () {
+Route::prefix('supervisor')->name('supervisor.')->middleware('auth')->group(function () {
     Route::prefix('usuarios')->name('usuarios.')->group(function () {
         Route::get('/{usuario}/historial', Supervisor\HistorialController::class)->name('historial');
 
@@ -47,7 +46,7 @@ Route::prefix('supervisor')->name('supervisor.')->group(function () {
 
 # Encargado routes
 
-Route::prefix('encargado')->name('encargado.')->group(function() {
+Route::prefix('encargado')->name('encargado.')->middleware('auth')->group(function() {
     # Usuarios routes for supervisor
     Route::prefix('usuarios')->name('usuarios.')->group(function () {
         Route::get('/{usuario}/delete', [Encargado\UsuariosController::class, 'destroy'])->name('usuarios.destroy');
@@ -62,4 +61,20 @@ Route::prefix('encargado')->name('encargado.')->group(function() {
 
     # Consignaciones for encargado
     Route::get('/consignaciones/{consignacion}/delete', [Encargado\ConsignacionesController::class, 'destroy'])->name('consignaciones.destroy');
+});
+
+# Encargado routes
+
+Route::prefix('cliente')->name('cliente.')->middleware('auth')->group(function () {
+    # Compra routes for client
+    Route::prefix('compras')->name('compra.')->middleware('auth')->group(function () {
+        Route::get('/{producto}/create', [Cliente\ComprasController::class, 'create'])->name('create');
+        Route::post('/{producto}', [Cleinte\ComprasController::class, 'store'])->name('store');
+    });
+
+    # Comentario route for client
+    Route::post('/productos/{producto}/comentarios', Cliente\ComentariosController::class)->name('comentarios.store');
+
+    # Calificacion route for client
+    Route::post('/productos/{producto}/calificaciones', Cliente\CalificacionesController::class)->name('calificaciones.store');
 });

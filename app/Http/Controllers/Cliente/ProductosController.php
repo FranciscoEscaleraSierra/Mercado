@@ -11,7 +11,8 @@ class ProductosController extends Controller
     {
         $productos = Producto::get();
 
-        return view('productos.index', compact('productos'));
+        return CategoriasResource::collection($productos);
+        // return view('productos.index', compact('productos'));
     }
 
     public function create(Request $request)
@@ -28,6 +29,19 @@ class ProductosController extends Controller
 
     public function show(Producto $producto, Request $request)
     {
-        return view('productos.show', compact('producto'));
+        return new CategoriasResource($categorias);
+        // return view('productos.show', compact('producto'));
+    }
+
+    public function edit(Producto $producto, Request $request)
+    {
+        return view('cliente.categorias.edit')->with('producto', $producto);
+    }
+
+    public function update(Producto $producto, Request $request)
+    {
+        $producto->save($request);
+
+        return redirect(route('cliente.categorias.index'));
     }
 }

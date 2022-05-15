@@ -35,7 +35,7 @@ class Consignacion extends Model
 
     public function producto()
     {
-      return $this->hasOne(Producto::class, 'producto_id');
+      return $this->hasOne(Producto::class, 'consignacion_id');
     }
 
     public function comentarios()

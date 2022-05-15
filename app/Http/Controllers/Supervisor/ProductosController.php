@@ -3,31 +3,24 @@
 namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\Supervisor\ProductoResource;
+use App\Http\Resources\Supervisor\ProductosResource;
 use App\Models\Producto;
+use App\Models\Categoria;
+use Illuminate\Http\Request;
 
 class ProductosController extends Controller
 {
-    public function index(Request $request)
+    public function index(Categoria $categoria, Request $request)
     {
         $productos = Producto::with('categorias')->deCategoria($categoria)
             ->when($request->nombre, function ($productos) use ($request) {
                 return $productos->where('nombre', 'like', '%'.$request->nombre.'%');
             })
             ->get();
-        return view('supervisor.productos.index', compact('productos'));
-    }
 
-    public function create(Request $request)
-    {
-        return view('supervisor.productos.create');
-    }
-
-    public function store(Request $request)
-    {
-        (new Producto($request))->save();
-
-        return redirect(route('supervisor.productos.show', ['producto_id' => $producto->id]));
+        return ProductosResource::collection($productos);
+        // return view('supervisor.productos.index', compact('productos'));
     }
 
     /**
@@ -35,19 +28,8 @@ class ProductosController extends Controller
     **/
     public function show(Producto $producto, Request $request)
     {
-        return view('supervisor.productos.show', compact('producto'));
-    }
-
-    public function edit(Producto $producto, Request $request)
-    {
-        return view('supervisor.productos.edit', compact('producto'));
-    }
-
-    public function update(Producto $producto, Request $request)
-    {
-        $producto->fill($request->input())->save();
-
-        return redirect(route('supervisor.productos.show', ['producto_id' => $producto->id]));
+        // return view('supervisor.productos.show', compact('producto'));
+        return new ProductoResource($producto);
     }
 
     public function destroy(Producto $producto)

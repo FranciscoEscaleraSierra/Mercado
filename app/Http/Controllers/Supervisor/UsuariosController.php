@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Supervisor\UsuarioResource;
+use App\Http\Resources\Supervisor\UsuariosResource;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Usuario;
 
 class UsuariosController extends Controller
 {
@@ -13,8 +15,8 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::get();
 
-        // return $usuarios;
-        return view('supervisor.usuarios.index', compact('usuarios'));
+        return UsuariosResource::collection($usuarios);
+        // return view('supervisor.usuarios.index', compact('usuarios'));
     }
 
     public function create()
@@ -32,7 +34,8 @@ class UsuariosController extends Controller
     // Muestra el Kardex del usuario
     public function show(Usuario $usuario)
     {
-        return view('supervisor.usuarios.show', compact('usuario'));
+        return new UsuarioResource($usuario);
+        // return view('supervisor.usuarios.show', compact('usuario'));
     }
 
     public function edit(Usuario $usuario, Request $request)

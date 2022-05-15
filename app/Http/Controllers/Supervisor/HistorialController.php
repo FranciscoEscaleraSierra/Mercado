@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\HistorialUsuarioResource;
+use App\Http\Resources\Supervisor\HistorialResource;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -31,7 +31,7 @@ class HistorialController extends Controller
             },
         ]);
 
-        // return new HistorialUsuarioResource($usuario);
-        return view('supervisor.usuarios.historial', compact('usuario'));
+        return new HistorialResource($usuario);
+        // return view('supervisor.usuarios.historial', compact('usuario'));
     }
 }

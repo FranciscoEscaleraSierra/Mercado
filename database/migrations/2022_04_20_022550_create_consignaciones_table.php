@@ -17,10 +17,6 @@ class CreateConsignacionesTable extends Migration
             $table->id();
             $table->dateTime('autorizado')->nullable()->default(null);
             $table->text('razon');
-
-            $table->bigInteger('producto_id')->unsigned();
-            $table->foreign('producto_id')->references('id')->on('productos');
-
             $table->timestamps();
             $table->softDeletes();
         });

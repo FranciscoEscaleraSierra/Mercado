@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Supervisor;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HistorialUsuarioResource extends JsonResource
+class HistorialResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,7 +15,10 @@ class HistorialUsuarioResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id, 
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'email' => $this->email,
+            'rol' => $this->roles,
         ];
     }
 }

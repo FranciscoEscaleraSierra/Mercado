@@ -11,6 +11,10 @@ class Comentario extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $attributes = [
+        'comentario' => '',
+    ];
+
     /**
      * Create a new factory instance for the model.
      *
@@ -50,12 +54,12 @@ class Comentario extends Model
       return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
-    public function comentario()
+    public function comentarioPadre()
     {
       return $this->belongsTo(Comentario::class, 'comentario_id');
     }
 
-    public function comentarios()
+    public function comentariosHijos()
     {
       return $this->hasMany(Comentario::class, 'comentario_id');
     }
