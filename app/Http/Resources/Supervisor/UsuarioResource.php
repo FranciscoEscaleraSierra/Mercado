@@ -18,9 +18,8 @@ class UsuarioResource extends JsonResource
             'id' => $this->id,
             'nombre' => $this->nombre,
             'email' => $this->email,
-            'email_verified_at' => $this->email_verified_at,
             'rol' => $this->roles,
-            'elminado' => $this->deleted_at,
+            'eliminado' => $this->deleted_at,
         ];
     }
 }

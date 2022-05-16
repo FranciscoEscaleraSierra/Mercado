@@ -11,6 +11,10 @@ class Imagen extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'url'
+    ];
+
     /**
      * Create a new factory instance for the model.
      *

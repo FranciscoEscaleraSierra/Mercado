@@ -15,9 +15,10 @@ class CreateComprasTable extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->String('cardNumber');
-            $table->String('calificacion');
 
+            $table->String('cardNumber');
+            $table->int('calificacion');
+            $table->int('valida');
             $table->integer('a_pagar');
             $table->boolean('pagado')->default(false);
 

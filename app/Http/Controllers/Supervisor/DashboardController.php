@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Supervisor;
 
-use App\Http\Resources\Supervisor\DashboardResource;
+use App\Http\Resources\Supervisor\DashboardCollection;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Producto;
@@ -19,8 +19,7 @@ class DashboardController extends Controller
             'compras',
             ])
             ->get();
-
-        return new DashboardResource($usuarios);
+        return new DashboardCollection($usuarios);
         // return view('supervisor.dashboard', compact('usuarios'));
     }
 }

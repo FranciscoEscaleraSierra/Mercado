@@ -19,6 +19,11 @@ class HistorialResource extends JsonResource
             'nombre' => $this->nombre,
             'email' => $this->email,
             'rol' => $this->roles,
+            'compras' => $this->compras_count,
+            'ventas' => $this->ventas_count,
+            'productos consignados' => $this->productos_consignados_count,
+            'productos comprados' => $this->productos_comprados_count,
+            'productos existentes' => $this->productos_existentes_count,
         ];
     }
 }

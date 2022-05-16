@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Supervisor\CategoriaResource;
-use App\Http\Resources\Supervisor\CategoriasResource;
+use App\Http\Resources\Supervisor\CategoriasCollection;
 use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
@@ -22,7 +22,7 @@ class CategoriasController extends Controller
         ->withCount('productos')
         ->get();
 
-        return CategoriasResource::collection($categorias);
+        return new CategoriasCollection($categorias);
         // return view('supervisor.categorias.index', compact('categorias'));
     }
 

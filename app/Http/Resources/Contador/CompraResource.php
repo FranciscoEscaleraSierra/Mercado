@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Supervisor;
+namespace App\Http\Resources\Contador;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductoResource extends JsonResource
+class CompraResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,11 @@ class ProductoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre,
-            'precio' => $this->precio,
-            'existencias' => $this->existencias,
-            'description' => $this->description,
-            'consignacion' => $this->consignacion_id,
+            'numero de tarjeta' => $this->cardNumber,
+            'calificacion' => $this->calificacion,
+            'pago pendiente' => $this->a_pagar,
+            'compra pagada' => $this->pagado,
+            'compra valida' => $this->valida,
             'eliminado' => $this->deleted_at,
         ];
     }

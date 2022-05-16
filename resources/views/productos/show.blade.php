@@ -56,13 +56,13 @@
                         <p class="lead">{{ $producto->descripcion }}</p>
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                         </br>
-                            <a href="{{ route('cliente.compra.create', [$producto->id, 'pago' => 0]) }}">
+                            <a href="{{ route('cliente.productos.create', [$producto->id, 'pago' => 0]) }}">
                                 <button class="btn btn-outline-dark flex-shrink-0" type="button">
                                     <i class="bi-cart-fill me-1"></i>
                                     Compra electronica
                                 </button>
                             </a>
-                            <a href="{{ route('cliente.compra.create', [$producto->id, 'pago' => 1]) }}">
+                            <a href="{{ route('cliente.productos.create', [$producto->id, 'pago' => 1]) }}">
                                 <button class="btn btn-outline-dark flex-shrink-0" type="button">
                                     <i class="bi-cart-fill me-1"></i>
                                     Pago en ventanilla

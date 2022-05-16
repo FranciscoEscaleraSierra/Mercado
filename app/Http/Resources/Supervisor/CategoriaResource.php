@@ -15,6 +15,10 @@ class CategoriaResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'activa' => $this->activa,
+            'eliminada' => $this->deleted_at,
         ];
     }
 }

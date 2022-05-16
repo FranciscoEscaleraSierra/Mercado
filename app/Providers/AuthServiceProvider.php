@@ -14,6 +14,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Producto' => 'App\Policies\SupervisorProductoPolicy',
+        'App\Models\Usuario' => 'App\Policies\SupervisorUsuarioPolicy',
+        'App\Models\Categorias' => 'App\Policies\SupervisorCategoryPolicy',
     ];
 
     /**
@@ -25,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('categorias', function (Usuario $usuario){
+            return $usuario->roles == 'Supervisor';
+        });
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Encargado;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Encargado\ProductoResource;
-use App\Http\Resources\Encargado\ProductosResource;
+use App\Http\Resources\Encargado\ProductosCollection;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class ProductosController extends Controller
             })
             ->get();
 
-        return ProductosResource::collection($productos);
+        return new ProductosCollection($productos);
         // return view('encargado.productos.index', compact('productos'));
     }
 

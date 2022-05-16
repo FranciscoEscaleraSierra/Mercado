@@ -7,6 +7,7 @@ use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\Supervisor;
 use App\Http\Controllers\Encargado;
 use App\Http\Controllers\Cliente;
+use App\Http\Controllers\Contador;
 use Illuminate\Support\Facades\Route;
 
 # Public routes
@@ -63,18 +64,29 @@ Route::prefix('encargado')->name('encargado.')->middleware('auth')->group(functi
     Route::get('/consignaciones/{consignacion}/delete', [Encargado\ConsignacionesController::class, 'destroy'])->name('consignaciones.destroy');
 });
 
-# Encargado routes
+# Cliente routes
 
 Route::prefix('cliente')->name('cliente.')->middleware('auth')->group(function () {
     # Compra routes for client
-    Route::prefix('compras')->name('compra.')->middleware('auth')->group(function () {
-        Route::get('/{producto}/create', [Cliente\ComprasController::class, 'create'])->name('create');
-        Route::post('/{producto}', [Cleinte\ComprasController::class, 'store'])->name('store');
+    Route::prefix('productos')->name('productos.')->middleware('auth')->group(function () {
+        Route::get('/{producto}/comprar', [Cliente\ComprasController::class, 'create'])->name('create');
+        Route::post('/{producto}', [Cliente\ComprasController::class, 'store'])->name('store');
     });
 
-    # Comentario route for client
-    Route::post('/productos/{producto}/comentarios', Cliente\ComentariosController::class)->name('comentarios.store');
+    Route::resource('/productos', Cliente\ProductosController::class)->except('destroy');
+    Route::get('/productos/{producto}/delete', [Cliente\ProductosController::class, 'destroy'])->name('productos.destroy');
+
+    # Comentarios route for client
+    Route::post('/productos/{producto}/comentarios', Cliente\ComentariosPreguntasController::class)->name('preguntas.store');
+    Route::post('/comentarios/{comentario}/respuestas', Cliente\ComentariosRespuestasController::class)->name('respuestas.store');
 
     # Calificacion route for client
     Route::post('/productos/{producto}/calificaciones', Cliente\CalificacionesController::class)->name('calificaciones.store');
+});
+
+# Contador routes
+
+Route::prefix('contador')->name('contador.')->middleware('auth')->group(function () {
+    Route::resource('/compras', Contador\ComprasController::class)->only(['index', 'show', 'update', 'store']);
+    Route::get('/compras/{compra}/delete', [Contador\ComprasController::class, 'destroy'])->name('compras.destroy');
 });

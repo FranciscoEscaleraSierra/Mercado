@@ -20,8 +20,7 @@ class ProductoResource extends JsonResource
             'precio' => $this->precio,
             'existencias' => $this->existencias,
             'description' => $this->description,
-            'usuario_id' => $this->usuario_id,
-            'consignacion_id' => $this->consignacion_id,
+            'consignacion' => $this->consignacion_id,
             'eliminado' => $this->deleted_at,
         ];
     }

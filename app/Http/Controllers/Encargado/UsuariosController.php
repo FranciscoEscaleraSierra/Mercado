@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Encargado;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Encargado\UsuarioResource;
-use App\Http\Resources\Encargado\UsuariosResource;
+use App\Http\Resources\Encargado\UsuariosCollection;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +15,7 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::get();
 
-        return UsuariosResource::collection($usuarios);
+        return new UsuariosCollection($usuarios);
         // return view('encargado.usuarios.index', compact('usuarios'));
     }
 

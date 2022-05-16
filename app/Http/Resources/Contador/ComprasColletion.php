@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Encargado;
+namespace App\Http\Resources\Contador;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductosResource extends JsonResource
+class ComprasColletion extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,7 +14,6 @@ class ProductosResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-        ];
+        return parent::toArray($request);
     }
 }

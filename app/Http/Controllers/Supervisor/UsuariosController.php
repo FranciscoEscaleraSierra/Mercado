@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Supervisor\UsuarioResource;
-use App\Http\Resources\Supervisor\UsuariosResource;
+use App\Http\Resources\Supervisor\UsuariosCollection;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +15,7 @@ class UsuariosController extends Controller
     {
         $usuarios = Usuario::get();
 
-        return UsuariosResource::collection($usuarios);
+        return new UsuariosCollection($usuarios);
         // return view('supervisor.usuarios.index', compact('usuarios'));
     }
 

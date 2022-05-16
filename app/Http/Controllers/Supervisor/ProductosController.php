@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Supervisor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Supervisor\ProductoResource;
-use App\Http\Resources\Supervisor\ProductosResource;
+use App\Http\Resources\Supervisor\ProductosCollection;
 use App\Models\Producto;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class ProductosController extends Controller
             })
             ->get();
 
-        return ProductosResource::collection($productos);
+        return new ProductosCollection($productos);
         // return view('supervisor.productos.index', compact('productos'));
     }
 

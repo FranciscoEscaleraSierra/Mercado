@@ -11,6 +11,11 @@ class Compra extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'cardNumber',
+        'calificacion',
+    ];
+
     /**
      * Create a new factory instance for the model.
      *
