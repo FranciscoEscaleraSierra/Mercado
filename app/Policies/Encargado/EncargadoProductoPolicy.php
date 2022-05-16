@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Encargado;
 
 use App\Models\Producto;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class SupervisorProductoPolicy
+class EncargadoProductoPolicy
 {
     use HandlesAuthorization;
 

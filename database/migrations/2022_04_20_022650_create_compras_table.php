@@ -17,8 +17,8 @@ class CreateComprasTable extends Migration
             $table->id();
 
             $table->String('cardNumber');
-            $table->int('calificacion');
-            $table->int('valida');
+            $table->integer('calificacion')->default(null);
+            $table->integer('valida');
             $table->integer('a_pagar');
             $table->boolean('pagado')->default(false);
 

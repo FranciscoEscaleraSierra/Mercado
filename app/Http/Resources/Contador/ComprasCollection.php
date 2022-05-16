@@ -4,7 +4,7 @@ namespace App\Http\Resources\Contador;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ComprasColletion extends JsonResource
+class ComprasCollection extends JsonResource
 {
     /**
      * Transform the resource into an array.

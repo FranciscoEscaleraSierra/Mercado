@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Contador;
 
+use App\Http\Resources\Contador\CompraResource;
+use App\Http\Resources\Contador\ComprasCollection;
 use App\Http\Controllers\Controller;
 use App\Models\Compra;
 use Illuminate\Http\Request;
@@ -10,7 +12,7 @@ class ComprasController extends Controller
 {
     public function index(Request $request)
     {
-        $compras = Compras::get();
+        $compras = Compra::get();
 
         return new ComprasCollection($compras);
         // return view('contador.compras.index', compact('compras'));

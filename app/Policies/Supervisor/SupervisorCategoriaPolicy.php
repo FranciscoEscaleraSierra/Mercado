@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Supervisor;
 
 use App\Models\Categoria;
 use App\Models\Usuario;

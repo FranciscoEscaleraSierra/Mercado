@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Supervisor;
 
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
