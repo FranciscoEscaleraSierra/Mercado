@@ -6,6 +6,7 @@ use App\Models\Categoria;
 use App\Models\Producto;
 use App\Models\Usuario;
 use Database\Seeders\CategoriasSeeder;
+use Database\Seeders\CompraSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       $this->call(CategoriasSeeder::class);
+      $this->call(CompraSeeder::class);
 
       Usuario::factory(1)
           ->supervisor()
