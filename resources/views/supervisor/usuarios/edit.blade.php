@@ -1,7 +1,7 @@
 @extends('layout.base')
 
 @section('head')
-        <link href="{{ asset('css/inicio.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/usuario.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
