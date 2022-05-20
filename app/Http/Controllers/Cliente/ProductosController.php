@@ -6,6 +6,7 @@ use App\Http\Resources\Cliente\ProductoResource;
 use App\Http\Resources\Cliente\ProductosCollection;
 use App\Http\Controllers\Controller;
 use App\Models\Producto;
+use App\Models\Imagen;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,7 +37,7 @@ class ProductosController extends Controller
 
     public function create(Request $request)
     {
-        return view('encargado.productos.create');
+        return view('cliente.productos.create');
     }
 
     public function store(Request $request)
@@ -46,6 +47,7 @@ class ProductosController extends Controller
         if ($producto->save())
         {
             $imagen = $request->file('imagen');
+            // dd($request->input());
 
             $path = $imagen->store('public/images');
 
@@ -60,7 +62,7 @@ class ProductosController extends Controller
             $consignacion = $producto->consignacion()->firstOrCreate();
         }
 
-        return redirect(route('encargado.productos.show', compact('producto', 'consignacion')));
+        return redirect(route('cliente.productos.show', compact('producto', 'consignacion')));
     }
 
     public function show(Producto $producto, Request $request)

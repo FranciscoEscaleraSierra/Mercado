@@ -6,6 +6,7 @@ use App\Casts\RolesCast;
 use App\Models\Compra;
 use App\Models\Imagen;
 use App\Models\Producto;
+use App\Models\Enums\Rol;
 use Database\Factories\CategoriasFactory;
 use Database\Factories\UsuariosFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -61,6 +62,33 @@ class Usuario extends Authenticatable
         'email_verified_at' => 'datetime',
         'roles' => RolesCast::class,
     ];
+
+    # Acccessors
+
+    public function getIsEncargadoAttribute()
+    {
+        return $this->roles->contains(function ($rol) {
+            return $rol == Rol::ENCARGADO;
+        });
+    }
+    public function getIsClienteAttribute()
+    {
+        return $this->roles->contains(function ($rol) {
+            return $rol == Rol::CLIENTE;
+        });
+    }
+    public function getIsSupervisorAttribute()
+    {
+        return $this->roles->contains(function ($rol) {
+            return $rol == Rol::SUPERVISOR;
+        });
+    }
+    public function getIsContadorAttribute()
+    {
+        return $this->roles->contains(function ($rol) {
+            return $rol == Rol::CONTADOR;
+        });
+    }
 
     # Relationships
 

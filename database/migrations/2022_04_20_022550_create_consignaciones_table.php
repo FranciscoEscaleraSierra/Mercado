@@ -16,7 +16,7 @@ class CreateConsignacionesTable extends Migration
         Schema::create('consignaciones', function (Blueprint $table) {
             $table->id();
             $table->dateTime('autorizado')->nullable()->default(null);
-            $table->text('razon');
+            $table->text('razon')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });

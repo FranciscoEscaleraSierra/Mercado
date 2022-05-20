@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Categoria;
+use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\Usuario;
 use Database\Seeders\CategoriasSeeder;
-use Database\Seeders\CompraSeeder;
+use Database\Seeders\ComprasSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
       $this->call(CategoriasSeeder::class);
-      $this->call(CompraSeeder::class);
+      // $this->call(ComprasSeeder::class);
 
       Usuario::factory(1)
           ->supervisor()
@@ -40,6 +41,11 @@ class DatabaseSeeder extends Seeder
                 $categorias = Categoria::inRandomOrder()->take(2)->get();
 
                 $producto->categorias()->attach($categorias->pluck('id'));
+              })
+              ->each(function ($producto) {
+                $compra = Compra::factory()->make();
+
+                $producto->compras()->save($compra);
               });
 
             $cliente->productos()->saveMany($productos);

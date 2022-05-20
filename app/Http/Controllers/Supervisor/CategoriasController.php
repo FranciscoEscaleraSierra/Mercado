@@ -8,9 +8,22 @@ use App\Http\Resources\Supervisor\CategoriasCollection;
 use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriasController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            return Auth::user()->is_supervisor ? $next($request) : abort(403);
+        });
+    }
+
     public function index(Request $request)
     {
         $categorias = Categoria::when($request->nombre, function ($categoria) use ($request) {

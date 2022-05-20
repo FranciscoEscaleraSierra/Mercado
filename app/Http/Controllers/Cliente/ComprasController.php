@@ -10,9 +10,9 @@ use App\Models\Imagen;
 
 class ComprasController extends Controller
 {
-    public function create(Request $request)
+    public function create(Producto $producto, Request $request)
     {
-        return view('productos.create', ['producto_id' => $producto->id]);
+        return view('cliente.compras.create', ['producto_id' => $producto->id]);
     }
 
     public function store(Producto $producto, Request $request)

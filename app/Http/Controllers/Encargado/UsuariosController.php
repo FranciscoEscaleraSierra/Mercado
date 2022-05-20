@@ -8,9 +8,22 @@ use App\Http\Resources\Encargado\UsuariosCollection;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UsuariosController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            return Auth::user()->is_encargado ? $next($request) : abort(403);
+        });
+    }
+
     public function index(Request $request)
     {
         $usuarios = Usuario::get();

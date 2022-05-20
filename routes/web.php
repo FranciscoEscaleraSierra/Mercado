@@ -39,7 +39,7 @@ Route::prefix('supervisor')->name('supervisor.')->middleware('auth')->group(func
 
     # Productos routes for supervisor
     Route::get('/productos/{producto}/delete', [Supervisor\ProductosController::class, 'destroy'])->name('productos.destroy');
-    Route::resource('/productos', Supervisor\ProductosController::class)->except('destroy');
+    Route::resource('/productos', Supervisor\ProductosController::class)->only('index', 'show', 'destroy');
 
     # Dashboard route
     Route::get('/dashboard', Supervisor\DashboardController::class)->name('dashboard');
@@ -69,7 +69,7 @@ Route::prefix('encargado')->name('encargado.')->middleware('auth')->group(functi
 Route::prefix('cliente')->name('cliente.')->middleware('auth')->group(function () {
     # Compra routes for client
     Route::prefix('productos')->name('productos.')->middleware('auth')->group(function () {
-        Route::get('/{producto}/comprar', [Cliente\ComprasController::class, 'create'])->name('create');
+        Route::get('/{producto}/comprar', [Cliente\ComprasController::class, 'create'])->name('comprar');
         Route::post('/{producto}', [Cliente\ComprasController::class, 'store'])->name('store');
     });
 

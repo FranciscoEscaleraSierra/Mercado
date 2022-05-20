@@ -18,7 +18,7 @@ class CreateImagenesTable extends Migration
 
             $table->string('url');
             $table->bigInteger('imagenes_id');
-            $table->string('imagenes_tipo');
+            $table->string('imagenes_type');
 
             $table->timestamps();
             $table->softDeletes();

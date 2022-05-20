@@ -26,6 +26,18 @@ class Producto extends Model
         return ProductosFactory::new();
     }
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'nombre',
+        'precio',
+        'descripcion',
+        'existencias',
+    ];
+
     protected $table = 'productos';
 
     # Relationships

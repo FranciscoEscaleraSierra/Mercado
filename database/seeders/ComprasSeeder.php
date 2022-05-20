@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Compra;
 
-class CompraSeeder extends Seeder
+class ComprasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
